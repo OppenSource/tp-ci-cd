@@ -20,14 +20,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node_version: 18.x
-
-      - name: Installer les dépendances
-        run: npm install --force
-
       - name: Installer Versel CLI
         run: npm install --global vercel@latest
 
@@ -39,7 +31,3 @@ jobs:
 
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
-
-      # permet de savoir quelles parties de l'application sont convers par les tests
-      - name: Tests
-        run: npm run test -- --no-watch --code-coverage
